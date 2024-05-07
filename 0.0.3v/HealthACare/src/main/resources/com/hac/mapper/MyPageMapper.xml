@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hac.mapper.MyPageMapper">
+
+	<!-- 내정보 조회 -->
+	<select id = "myProfile" resultType="com.hac.dto.userDto.InfoDto" parameterType="com.hac.dto.searchDto.MyPageDto" >
+		SELECT * FROM info WHERE U_no = #{U_no}
+	</select>
+	
+		<select id = "myPhtsical" resultType="com.hac.dto.userDto.PhysicalLogDto">
+		SELECT * FROM physicalLog WHERE U_no = #{U_no} ORDER BY P_no DESC LIMIT 1
+	</select>
+
+	<!-- 닉네임 변경 -->
+	
+	<update id="nameChange" parameterType="com.hac.dto.searchDto.MyPageDto">
+		UPDATE info SET I_name = #{I_name},I_nameUpdateTime = now() WHERE U_no = #{U_no}
+	</update>
+	
+	<!-- 이메일 변경 -->
+		<update id="emailChange" parameterType="com.hac.dto.searchDto.MyPageDto">
+			UPDATE info SET I_email = #{I_email} WHERE U_no = #{U_no}
+		</update>
+	
+	<!-- 비밀번호 찾기 질문 및 대답내용 변경 -->
+		<update id="pwFindingChange" parameterType="com.hac.dto.searchDto.MyPageDto">
+			UPDATE info SET I_pwFinding = #{I_pwFinding},I_hint = #{I_hint} WHERE U_no = #{U_no}
+		</update>
+	
+	<!-- 프로필 사진 변경 -->
+	<update id="profileImgChange" parameterType="com.hac.dto.searchDto.MyPageDto">
+		UPDATE info SET I_profileImg = #{I_profileImg}, I_profileImgUpdateTime = now() WHERE U_no = #{U_no}
+	</update>
+		
+
+
+	<!-- 그레프 정보 뽑아오기 -->
+		<!--  필요한 정보별로 데이터 줄력, 주간, 월간, 연간  -->
+			<!-- period 에 넣는 값에 따라 결과값이 달라짐,-->
+	<select id="physicalLog" resultType="com.hac.dto.userDto.PhysicalLogDto" parameterType="com.hac.dto.searchDto.MyPageDto">
+	SELECT 
+			YEAR(P_createdAt) AS year, 
+			MONTH(P_createdAt) AS month,
+			WEEK(P_createdAt) AS week,
+			AVG(P_weightLog) AS P_weightLog,
+			AVG(P_heightLog) AS P_heightLog
+	FROM 
+			physicalLog
+	WHERE
+			U_no = #{U_no} 
+			<if test="period == 'weekly'">
+				GROUP BY YEAR(P_createdAt), WEEK(P_createdAt)
+			</if>
+			<if test="period == 'monthly'">
+				GROUP BY YEAR(P_createdAt), MONTH(P_createdAt)
+			</if>
+			<if test="period == 'yearly'">
+				GROUP BY YEAR(P_createdAt)
+			</if>
+	ORDER BY 
+			YEAR(P_createdAt)
+
+			<if test="period == 'weekly'">
+				,WEEK(P_createdAt);
+			</if>
+			<if test="period == 'monthly'">
+				,MONTH(P_createdAt);
+			</if>
+			
+	</select>
+		<!-- 일간 -->
+	<select id="physicalLogDay">
+		SELECT * FROM physicalLog;
+	</select>
+
+	
+	<!--  이미지 추출 -->
+	
+	<select id="getByteImg" resultType="com.hac.dto.userDto.InfoDto">
+		SELECT * FROM info WHERE U_no = #{U_no}
+	</select>
+	
+	
+	
+		
+
+</mapper>

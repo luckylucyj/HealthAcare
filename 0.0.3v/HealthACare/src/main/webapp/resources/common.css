@@ -1,0 +1,570 @@
+@charset "UTF-8";
+
+.s-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.s {
+    float: left;
+    display: none;
+    transition: 0.5s;
+    }
+
+.s img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+body {
+	background-color: #d0f5ff;
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+img {
+	pointer-events: none; /* 이미지 드래그 막기 */
+}
+
+iframe {
+	border-radius: 10px;
+}
+/*기본 영역 세팅 (시작)*/
+#warp {
+	width: 1820px;
+	background-color: white;
+	margin: auto;
+	display: flex;
+}
+
+#Category {
+	width: 357px;
+	background-color: #9FE2FA99;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 10px 30px;
+	flex-direction: column;
+}
+
+#main {
+	width: 1372px;
+	padding: 0px 50px;
+	padding-bottom: 50px;
+}
+
+#top {
+	height: 110px;
+	width: 1372px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+/*기본 영역 세팅 (끝)*/
+/*CATEGORY 하위*/
+#Category #imgbox {
+	width: 200px;
+	height: 90px;
+	margin-bottom: 100px;
+	position: relative; /* 부모 요소를 기준으로 자식 요소의 위치를 지정하기 위해 필요 */
+}
+
+#imgbox img {
+	width: 100%; /* 이미지의 너비를 부모 요소의 너비와 동일하게 설정 */
+	height: auto; /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
+	display: block; /* 이미지를 블록 요소로 표시하여 수직 정렬 문제 해결 */
+	position: absolute; /* 이미지를 절대 위치로 지정하여 부모 요소 내에 배치 */
+	top: 0; /* 부모 요소의 맨 위에 이미지를 배치 */
+	left: 0; /* 부모 요소의 맨 왼쪽에 이미지를 배치 */
+}
+
+#customSelect {
+	position: relative;
+	width: 250px;
+}
+
+.SelecNone {
+	padding: 10px;
+	cursor: pointer;
+	font-size: 28px;
+}
+
+.SelectHealth {
+	padding: 10px;
+	cursor: pointer;
+	font-size: 28px;
+}
+
+.select-itemsHealth {
+	width: 100%;
+	display: none;
+	margin-left: 35px;
+	font-size: 24px;
+}
+
+.select-itemsHealth div {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #9FE2FA99;
+}
+
+.select-itemsHealth div:hover {
+	border-bottom: 1px solid #18A4FF;
+}
+
+.select-show {
+	display: block;
+}
+/*CATEGORY-셀렉트 박스~(끝)*/
+/*CATEGORY-셀렉트 박스 푸드~*/
+.SelectFood {
+	padding: 10px;
+	cursor: pointer;
+	font-size: 28px;
+}
+
+.select-itemsFood {
+	width: 100%;
+	display: none;
+	margin-left: 35px;
+	font-size: 24px;
+}
+
+.select-itemsFood div {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #9FE2FA99;
+}
+
+.select-itemsFood div:hover {
+	border-bottom: 1px solid #18A4FF;
+}
+
+.select-show {
+	display: block;
+}
+/*CATEGORY-셀렉트 박스~(끝)*/
+/*CATEGORY-셀렉트 박스 질병~*/
+.SelectDisease {
+	padding: 10px;
+	cursor: pointer;
+	font-size: 28px;
+}
+
+.select-itemsDisease {
+	width: 100%;
+	display: none;
+	margin-left: 35px;
+	font-size: 24px;
+}
+
+.select-itemsDisease div {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #9FE2FA99;
+}
+
+.select-itemsDisease div:hover {
+	border-bottom: 1px solid #18A4FF;
+}
+
+.select-show {
+	display: block;
+}
+/*CATEGORY-셀렉트 박스~(끝)*/
+/*TOP 하위*/
+/*SIGN UP ... 회원 로그인 화면*/
+#top div {
+	display: flex;
+}
+
+#top #Search {
+	height: 75px;
+	width: 501px;
+	background-color: #F3F3F3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#top #Search img {
+	height: 40px;
+	pointer-events: none; /* 이미지 드래그 막기 */
+}
+
+#top input {
+	height: 75px;
+	width: 401px;
+	background-color: #F3F3F3;
+	border: 0px;
+	font-size: 26px;
+	padding: 0px 30px;
+}
+
+#top input:focus {
+	outline: none; /* 클릭 시 테두리 없애기 */
+}
+
+#top input::placeholder {
+	color: #B4B4B4;
+}
+
+#top #user {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	min-width: 400px;
+	height: 72px;
+	font-size: 30px;
+	font-weight: 700;
+	font-size: 30px
+}
+
+#top #user .box {
+	min-width: 200px;
+	max-width: 1000px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 15px;
+}
+#top #user .box .myImg {
+margin-left: 15px;
+}
+
+#top #user .Profile {
+	width: 72px;
+	height: 72px;
+	border-radius: 100%;
+	object-fit: cover; /* 이미지를 요소에 맞춰 자르기 */
+	border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#top #user  .icon {
+	height: 30px;
+	margin-left: 15px;
+}
+
+#top #user .out {
+	font-size: 23px;
+	color: #B4B4B4;
+}
+/*SIGN UP ... 비회원화면*/
+#top #signupBox {
+	width: 128px;
+	height: 65px;
+	border-radius: 14px;
+	border: 1px solid #03BDFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	font-weight: 700;
+	color: #03BDFF;
+}
+/*TOP 하위(끝)*/
+/*MAIN 하위*/
+#main #title {
+	font-size: 46px;
+	font-weight: 700;
+	margin-top: 5px;
+}
+
+#main #buttonZONE {
+	height: 55px;
+	margin: 20px 0px;
+	margin-right: 30px;
+}
+
+#main #buttonZONE a {
+	height: 100%;
+	border-radius: 26px;
+	padding: 3px 15px;
+	font-size: 26px;
+	cursor: pointer;
+	border: 1px solid #000000;
+	color: #000000;
+}
+
+#main #buttonZONE a:hover {
+	border: 1px solid #18A4FF;
+	color: #18A4FF;
+}
+
+.prev-btn, .next-btn{
+	background-color:white;
+	border: 0px;
+	width: 60px;
+	cursor: pointer;
+	border-radius: 25px;
+}
+.prev-btn:hover, .next-btn:hover{
+	background-color: #ddd;
+}
+.prev-btn img, .next-btn img{
+	width: 25px;
+}
+
+#main .Banner {
+background: linear-gradient(to bottom right, #03BDFF, #6ad2b2);    
+/* 	background-image: url('/resources/img/banner.jpg'); */
+	width: 1150px;
+	height: 187px;
+	border-radius: 28px;
+	padding: 25px 36px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	cursor: pointer;
+}
+
+#main .Banner .title {
+	color: white;
+	font-size: 46px;
+	font-weight: 700;
+}
+
+#main .Banner .text {
+	color: white;
+	font-size: 46px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 35px;
+	color: #FFFFFF;
+	position: absolute;
+	bottom: 36px;
+	font-weight: 400;
+}
+
+#main #optionTitle {
+	display: flex;
+}
+
+#main #optionTitle .choiceTitleList {
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 57px;
+	letter-spacing: -0.01em;
+	color: #000000;
+	margin: 50px 0px;
+	margin-right: 20px;
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냄 */
+}
+
+#main #optionTitle .choiceTitleYotube {
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 57px;
+	letter-spacing: -0.01em;
+	color: #D0D0D2;
+	margin: 50px 0px;
+	margin-right: 20px;
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능함을 나타냄 */
+}
+/**/
+#main #listBox {
+	width: 990px;
+	height: 736px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap; /* 내부 요소들이 넘칠 때 자동으로 아래로 내려가도록 설정 */
+}
+
+#notice {
+	display: flex;
+	width: 990px;
+	justify-content: space-between;
+	border-bottom: 3px solid #9FE2FA99;
+	margin-bottom: 25px;
+}
+
+#main #listBox .list {
+	width: 419px;
+	height: 182px;
+	background: #F3F3F3;
+	border-radius: 10px;
+	margin-bottom: 25px;
+	padding: 18px 28px;
+	position: relative;
+}
+
+#main #listBox .list .top {
+	display: flex;
+	justify-content: space-between;
+}
+
+#main #listBox .list .subText {
+	font-weight: 700;
+	font-size: 20px;
+	color: #B1B1B1;
+	margin-top: 5px;
+}
+
+#main #listBox .list .subTextBox {
+	font-weight: 700;
+	font-size: 20px;
+	color: #B1B1B1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 11px;
+	gap: 10px;
+	width: 120px;
+	height: 35px;
+	border: 1px solid #B1B1B1;
+	border-radius: 25px;
+}
+
+#main #listBox .list .bottom {
+	position: absolute;
+	bottom: 18px;
+	font-weight: 700;
+	font-size: 20px;
+	color: #B1B1B1;
+		text-overflow: ellipsis; /* 넘치는 텍스트에 대한 생략 부호 (...)를 표시합니다. */
+}
+
+#main #listBox .list .bottom .title {
+	position: absolute;
+	bottom: 38px;
+	font-weight: 700;
+	font-size: 33px;
+	color: #000000;
+	width: 419px;
+	height: 50px;
+	white-space: nowrap; /* 텍스트를 한 줄로 고정합니다. */
+	overflow: hidden; /* 넘치는 텍스트를 숨깁니다. */
+	text-overflow: ellipsis; /* 넘치는 텍스트에 대한 생략 부호 (...)를 표시합니다. */
+}
+#main #listBox .list .bottom .box {
+	display: flex;
+}
+#main #listBox .list .bottom .i_name {
+	white-space: nowrap; /* 텍스트를 한 줄로 고정합니다. */
+	overflow: hidden; /* 넘치는 텍스트를 숨깁니다. */
+	text-overflow: ellipsis; /* 넘치는 텍스트에 대한 생략 부호 (...)를 표시합니다. */
+	width: 300px;
+	display: block;
+}
+
+#main #listBox .list:hover {
+	background: #03BDFF;
+	color: #ffffff;
+}
+
+#main #listBox .list:hover .bottom .title, #main #listBox .list:hover .bottom,
+	#main #listBox .list:hover .subText, #main #listBox .list:hover .subTextBox
+	{
+	color: #ffffff;
+}
+
+#main #listBox .list:hover .subTextBox {
+	color: #ffffff;
+	border: 1px solid #ffffff;
+}
+/**/
+#main #midAlign {
+	display: flex;
+	justify-content: space-between;
+}
+
+#main #rankingBox {
+	width: 334px;
+	height: 730px;
+	background: #FFFFFF;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+	border-radius: 16px;
+}
+
+#main #rankingBox .realTime {
+	width: 199px;
+	height: 349px;
+	padding: 40px 0px 0px 31px;
+}
+
+#main #rankingBox .realTime .realTitle {
+	font-weight: 700;
+	font-size: 18px;
+	color: black;
+	margin-bottom: 20px;
+	font-size: 23px;
+}
+
+#main #rankingBox .realTime .realTextBox {
+	margin-bottom: 13px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+#main #rankingBox .realTime .realText {
+	font-weight: 700;
+	font-size: 18px;
+	color: black;
+	margin-bottom: 13px;
+	font-weight: 500;
+	font-size: 12px;
+	color: #000000;
+	display: flex;
+	justify-content: space-between;
+}
+
+#main #rankingBox .realTime .realText .num {
+	margin-right: 18px;
+	width: 10px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 15px;
+	color: #B5B1B1;
+	font-size: 20px;
+}
+
+#main #rankingBox .realTime .realText .numBox {
+	display: flex;
+	width: 170px;
+	height:30px;
+	text-align: left;
+	justify-content: flex-start;
+	font-size: 20px;
+}
+#main #rankingBox .realTime .realText .numBox a{
+	white-space: nowrap; /* 텍스트를 한 줄로 고정합니다. */
+	overflow: hidden; /* 넘치는 텍스트를 숨깁니다. */
+	text-overflow: ellipsis; /* 넘치는 텍스트에 대한 생략 부호 (...)를 표시합니다. */
+}
+#main #store {
+	width: 1372px;
+	height: 300px;
+	background-image: url('/resources/img/bottomBanner.png');
+    background-size: cover; /* 배경 이미지를 컨테이너에 맞게 채웁니다. */
+    background-position: center; /* 배경 이미지를 가운데 정렬합니다. */
+	background-color: aqua;
+	border-radius: 28px;
+	margin-top: 58px;
+	/* background-image: url('/resources/img/banner.jpg'); */
+}
+/*MAIN 하위(끝)*/
+
+.myImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* 부모 요소의 높이에 맞게 설정 */
+}
+
+.myImg img {
+    max-width: 100%; /* 이미지의 최대 너비를 부모 요소에 맞게 설정 */
+    max-height: 100%; /* 이미지의 최대 높이를 부모 요소에 맞게 설정 */
+}

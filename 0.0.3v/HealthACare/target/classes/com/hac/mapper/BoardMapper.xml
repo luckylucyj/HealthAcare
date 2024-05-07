@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hac.mapper.BoardMapper">
+
+    <!-- 홈에 최신 공지사항 출력 -->
+    <select id="getListNoticeHome" resultType="com.hac.dto.boardDto.BoardDto">
+        SELECT * FROM board where B_category = '공지사항' ORDER BY B_no DESC;
+    </select>
+    
+    <!-- 마이페이지  -->
+    <select id="myBoardList" resultType="com.hac.dto.boardDto.BoardDto">
+        select * from board where U_no = #{U_no} and B_category != '공지사항' order by B_no DESC;
+    </select>
+    
+    <!-- 홈에 최신글 출력 -->
+    <select id="getListReadHome" resultType="com.hac.dto.boardDto.BoardDto">
+        SELECT * FROM board where B_category != '공지사항' ORDER BY B_no DESC;
+    </select>
+    
+    <!-- 인기글 출력 -->
+    <select id="popularPost" resultType="com.hac.dto.boardDto.BoardDto">
+        SELECT * FROM board where B_category != '공지사항' ORDER BY B_hit DESC;
+    </select>
+    
+    
+    
+	<select id="getList" resultType="com.hac.dto.boardDto.BoardDto">
+	    select * from board where B_category != '공지사항' and B_category != '운동' and B_category != '이벤트' and B_category != '질병추천음식'
+	    order by B_no
+	    <choose>
+	    	<when test='sort == 0'>
+	    	desc
+	    	</when>
+	    	<otherwise>
+	    	asc
+	    	</otherwise>
+	    </choose>
+	    limit #{limitIndex}, 7
+	</select>
+	
+	<select id="getNoticeList" resultType="com.hac.dto.boardDto.BoardDto">
+		select * from board where B_category = '공지사항' order by B_no desc limit 3
+	</select>
+		
+	<select id="searchList" resultType="com.hac.dto.boardDto.BoardDto" parameterType="com.hac.dto.boardDto.BoardSDto">
+	    SELECT *
+	    FROM board
+	    <where>
+	    	<choose>
+	    		<when test='column.equals("B_TITLE")'>
+	    			B_title LIKE CONCAT('%', #{word}, '%')
+	    		</when>
+	    		<when test='column.equals("B_TEXT")'>
+		             B_text LIKE CONCAT('%', #{word}, '%')
+	    		</when>
+	    		<when test='column.equals("B_TITLE_OR_B_TEXT")'>
+		             (B_title LIKE CONCAT('%', #{word}, '%') OR B_text LIKE CONCAT('%', #{word}, '%'))
+	    		</when>
+				<when test='column.equals("B_ID")'>
+		             B_name LIKE CONCAT('%', #{word}, '%')
+				</when>
+	    	</choose>
+	    </where>
+	    order by B_no desc
+	    LIMIT #{limitIndex}, 7;
+	</select>
+
+	<select id="searchListCount" resultType="int" parameterType="com.hac.dto.boardDto.BoardSDto">
+	    select count(*) from board where 
+	        <choose>
+	    		<when test='column.equals("B_TITLE")'>
+	    			B_title LIKE CONCAT('%', #{word}, '%')
+	    		</when>
+	    		<when test='column.equals("B_TEXT")'>
+		             B_text LIKE CONCAT('%', #{word}, '%')
+	    		</when>
+	    		<when test='column.equals("B_TITLE_OR_B_TEXT")'>
+		             (B_title LIKE CONCAT('%', #{word}, '%') OR B_text LIKE CONCAT('%', #{word}, '%'))
+	    		</when>
+				<when test='column.equals("B_ID")'>
+		             B_name LIKE CONCAT('%', #{word}, '%')
+				</when>
+	    	</choose>
+	</select>
+	
+	<select id="totalContent" resultType="int">
+		select count(*) from board where B_category != '공지사항' and B_category != '운동' and B_category != '이벤트' and B_category != '질병추천음식'
+	</select>
+	
+	<select id="read" resultType="com.hac.dto.boardDto.BoardDto">
+		select * from board where B_no = #{B_no}
+	</select>
+	
+	<delete id="del">
+		delete from board where B_no = #{B_no}
+	</delete>
+	
+	<insert id="write" parameterType="com.hac.dto.searchDto.WriteDto">
+		insert into board (I_name, U_no, B_title, B_category, B_text) 
+		value
+		(#{I_name},
+		#{U_no},
+		#{B_title},
+		#{B_category},
+		#{B_text})
+	</insert>
+	
+	<update id="hit">
+		update board set B_hit = B_hit + 1 where B_no = #{B_no}
+	</update>
+	
+	<update id="replyCount">
+		update board set B_replyCount = B_replyCount + 1 where B_no = #{B_no}
+	</update>
+	
+	<update id="delReplyCount">
+		update board set B_replyCount = B_replyCount - 1 where B_no = #{B_no}
+	</update>
+	
+	<update id="modify">
+		update board set 
+		B_title = #{B_title},
+		B_category = #{B_category},
+		B_text = #{B_text}
+		where B_no = #{B_no}
+	</update>
+
+</mapper>
